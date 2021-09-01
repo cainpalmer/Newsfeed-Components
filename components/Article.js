@@ -114,3 +114,67 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+// Step 1
+
+function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParagraph }){
+    const panel = document.createElement("div");
+    const panelTitle = document.createElement("h2");
+    const panelDate = document.createElement("p");
+    const panelContent1 = document.createElement("p");
+    const panelContent2 = document.createElement("p");
+    const panelContent3 = document.createElement("p");
+    const spanButton = document.createElement("span");
+
+    panel.appendChild(panelTitle);
+    panel.appendChild(panelDate);
+    panel.appendChild(panelContent1);
+    panel.appendChild(panelContent2);
+    panel.appendChild(panelContent3);
+    panel.appendChild(spanButton);
+
+    panel.classList.add("article", "article-open");
+    panelDate.classList.add("date");
+    panelContent1.classList.add("content");
+    panelContent2.classList.add("content");
+    panelContent3.classList.add("content");
+    spanButton.classList.add("expandButton");
+
+    panelTitle.textContent = title;
+    panelDate.textContent = date;
+    panelContent1.textContent = firstParagraph;
+    panelContent2.textContent = secondParagraph;
+    panelContent3.textContent = thirdParagraph;
+    spanButton.textContent = "+";
+
+    spanButton.style.fontSize = "1em";
+    spanButton.style.color = "purple";
+    spanButton.style.background = "none";
+
+// Step 2
+
+    spanButton.addEventListener("click", () =>{
+        panel.classList.toggle("article-open");
+    });
+
+// Step 3
+
+    return panel;
+}
+
+// Step 4 - 5
+
+const myArticle = {
+    title: 'How to Become a Web Developer',
+    date: 'Sep 1st, 2021',
+    firstParagraph: `Learn HTML, CSS and JS! `,
+    secondParagraph: `Learn VSCode, GitBash and React! `,
+    thirdParagraph: `Practice!!!`
+};
+data.push(myArticle);
+
+const append = document.querySelector("div.articles");
+data.forEach(article =>{
+    const panel = articleMaker(article);
+    append.appendChild(panel);
+}); 
